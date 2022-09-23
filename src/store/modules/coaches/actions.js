@@ -9,7 +9,7 @@ export default {
          areas: data.areas,
       };
 
-      const response = await fetch(`https://vue-http-demo-eb737-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`, {
+      const response = await fetch(`https://vue-coach-7f695-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`, {
          method: 'PUT',
          body: JSON.stringify(coachData),
       });
@@ -20,6 +20,7 @@ export default {
          //Error
       }
 
+      
 
       context.commit('registerCoach', {
          ...coachData,
@@ -29,7 +30,7 @@ export default {
    async loadCoaches(context, payload) {
       if (!payload.forceRefresh && !context.getters.shouldUpdate) return;
 
-      const response = await fetch(`https://vue-http-demo-eb737-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`);
+      const response = await fetch(`https://vue-coach-7f695-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`);
       const responseData = await response.json();
       if (!response.ok) {
          const error = new Error(responseData.message || 'Failed to fetch')
