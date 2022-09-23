@@ -21,10 +21,11 @@ export default {
       context.commit('addRequest', newRequest);
    },
 
-   
+
    async fetchRequests(context) {
       const coachId = context.rootGetters.userId;
-      const response = await fetch(`https://vue-coach-7f695-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`)
+      const token = context.rootGetters.token;
+      const response = await fetch(`https://vue-coach-7f695-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=${token}`)
       const resopeseData = await response.json();
 
       if (!response.ok) {
